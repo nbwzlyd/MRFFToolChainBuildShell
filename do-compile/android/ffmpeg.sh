@@ -38,6 +38,14 @@ CFG_FLAGS=
 CFG_FLAGS="$CFG_FLAGS $COMMON_FF_CFG_FLAGS"
 CFG_FLAGS="$CFG_FLAGS $THIRD_CFG_FLAGS"
 
+# fsp: 必须放在【所有标志拼装的最后】才生效。
+# 源站会把 MPEG-TS 分片伪装成 PNG（PNG 假头 + 真 TS），而本构建用的是
+# module-full.sh 的 --enable-demuxers（含 png_pipe），png_pipe 的探测只看 PNG 签名
+# 就能拿 99 分，会抢走分片 → 用 PNG 解码器解出 1x1 RGBA 白屏。
+# ijk 的 FFmpeg 构建里没有 png_pipe（strings: ijk=0 / 我们=1），Exo 更不用 FFmpeg。
+# 去掉后 TS 探测（扫 188 字节周期的 0x47）自然胜出，行为与 ijk/Exo 一致。
+CFG_FLAGS="$CFG_FLAGS --disable-demuxer=image_png_pipe"
+
 # Android 15 with 16 kb page size support
 # https://developer.android.com/guide/practices/page-sizes#compile-r27
 EXTRA_LDFLAGS="-Wl,-z,max-page-size=16384"
