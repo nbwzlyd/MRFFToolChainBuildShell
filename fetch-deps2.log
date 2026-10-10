@@ -1,0 +1,26 @@
+[get 1] ffmpeg8-android-universal-8.1.2.zip have=0 / 70664200
+[done] ffmpeg8-android-universal-8.1.2.zip size=70664200 expected=70664200
+[extract] ffmpeg8-android-universal-8.1.2.zip exit=0
+[get 1] openssl3-android-universal-3.6.4.zip have=0 / 15792035
+[done] openssl3-android-universal-3.6.4.zip size=15792035 expected=15792035
+[extract] openssl3-android-universal-3.6.4.zip exit=0
+=== top-level dirs ===
+ass
+bluray
+dav1d
+ffmpeg
+fontconfig
+freetype
+fribidi
+harfbuzz
+openssl
+opus
+smb2
+soundtouch
+uavs3d
+unibreak
+xml2
+=== ffmpeg / openssl structure ===
+ffmpeg: ffmpeg-arm64, ffmpeg-armv7a, ffmpeg-x86, ffmpeg-x86_64
+openssl: openssl-arm64, openssl-armv7a, openssl-x86, openssl-x86_64
+=== DONE ===

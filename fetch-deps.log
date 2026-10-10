@@ -1,0 +1,248 @@
+[get ] ffmpeg-android-universal-8.1.2.zip
+[ok  ] ffmpeg-android-universal-8.1.2.zip 0MB extracting
+tar.exe: Error opening archive: Unrecognized archive format
+[XFAIL] extract ffmpeg-android-universal-8.1.2.zip
+[get ] openssl-android-universal-3.6.4.zip
+[ok  ] openssl-android-universal-3.6.4.zip 0MB extracting
+tar.exe: Error opening archive: Unrecognized archive format
+[XFAIL] extract openssl-android-universal-3.6.4.zip
+[get ] opus-android-universal-1.6.1.zip
+[ok  ] opus-android-universal-1.6.1.zip 3.2MB extracting
+[get ] bluray-android-universal-1.5.0.zip
+[ok  ] bluray-android-universal-1.5.0.zip 8.1MB extracting
+[get ] dav1d-android-universal-1.5.4.zip
+[ok  ] dav1d-android-universal-1.5.4.zip 4.3MB extracting
+[get ] uavs3d-android-universal-1.2.1.zip
+[ok  ] uavs3d-android-universal-1.2.1.zip 2.7MB extracting
+[get ] smb2-android-universal-6.2.zip
+[ok  ] smb2-android-universal-6.2.zip 2MB extracting
+[get ] soundtouch-android-universal-2.4.1.zip
+[ok  ] soundtouch-android-universal-2.4.1.zip 1MB extracting
+[get ] xml2-android-universal-2.15.3.zip
+[ok  ] xml2-android-universal-2.15.3.zip 7.3MB extracting
+[get ] freetype-android-universal-2.14.3.zip
+[ok  ] freetype-android-universal-2.14.3.zip 2.6MB extracting
+[get ] fribidi-android-universal-1.0.16.zip
+[ok  ] fribidi-android-universal-1.0.16.zip 0.2MB extracting
+[get ] harfbuzz-android-universal-14.3.1.zip
+[ok  ] harfbuzz-android-universal-14.3.1.zip 14.9MB extracting
+[get ] unibreak-android-universal-7.0.zip
+[ok  ] unibreak-android-universal-7.0.zip 0.2MB extracting
+unibreak/unibreak-arm64/lib/liblinebreak.a: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\unibreak\\unibreak-arm64\\lib\\liblinebreak.a': Invalid argument
+unibreak/unibreak-x86/lib/liblinebreak.a: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\unibreak\\unibreak-x86\\lib\\liblinebreak.a': Invalid argument
+unibreak/unibreak-armv7a/lib/liblinebreak.a: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\unibreak\\unibreak-armv7a\\lib\\liblinebreak.a': Invalid argument
+unibreak/unibreak-x86_64/lib/liblinebreak.a: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\unibreak\\unibreak-x86_64\\lib\\liblinebreak.a': Invalid argument
+tar.exe: Error exit delayed from previous errors.
+[XFAIL] extract unibreak-android-universal-7.0.zip
+[get ] fontconfig-android-universal-2.18.3.zip
+[ok  ] fontconfig-android-universal-2.18.3.zip 10.9MB extracting
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/65-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\65-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/10-sub-pixel-none.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\10-sub-pixel-none.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/30-metric-aliases.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\30-metric-aliases.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/48-guessfamily.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\48-guessfamily.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/11-lcdfilter-default.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\11-lcdfilter-default.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/80-delicious.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\80-delicious.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/20-unhint-small-vera.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\20-unhint-small-vera.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/65-fonts-persian.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\65-fonts-persian.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/10-yes-antialias.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\10-yes-antialias.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/10-hinting-slight.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\10-hinting-slight.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/51-local.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\51-local.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/45-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\45-latin.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/49-sansserif.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\49-sansserif.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/40-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\40-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/48-spacing.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\48-spacing.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/60-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\60-latin.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/60-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\60-generic.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/45-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\45-generic.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/69-unifont.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\69-unifont.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/50-user.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\50-user.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/10-scale-bitmap-fonts.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\10-scale-bitmap-fonts.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/90-synthetic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\90-synthetic.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/70-no-bitmaps-except-emoji.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\70-no-bitmaps-except-emoji.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/65-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\65-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/10-sub-pixel-none.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\10-sub-pixel-none.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/30-metric-aliases.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\30-metric-aliases.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/48-guessfamily.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\48-guessfamily.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/11-lcdfilter-default.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\11-lcdfilter-default.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/80-delicious.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\80-delicious.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/20-unhint-small-vera.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\20-unhint-small-vera.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/65-fonts-persian.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\65-fonts-persian.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/10-yes-antialias.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\10-yes-antialias.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/10-hinting-slight.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\10-hinting-slight.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/51-local.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\51-local.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/45-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\45-latin.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/49-sansserif.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\49-sansserif.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/40-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\40-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/48-spacing.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\48-spacing.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/60-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\60-latin.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/60-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\60-generic.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/45-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\45-generic.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/69-unifont.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\69-unifont.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/50-user.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\50-user.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/10-scale-bitmap-fonts.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\10-scale-bitmap-fonts.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/90-synthetic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\90-synthetic.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/70-no-bitmaps-except-emoji.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\70-no-bitmaps-except-emoji.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/65-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\65-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/10-sub-pixel-none.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\10-sub-pixel-none.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/30-metric-aliases.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\30-metric-aliases.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/48-guessfamily.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\48-guessfamily.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/11-lcdfilter-default.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\11-lcdfilter-default.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/80-delicious.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\80-delicious.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/20-unhint-small-vera.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\20-unhint-small-vera.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/65-fonts-persian.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\65-fonts-persian.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/10-yes-antialias.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\10-yes-antialias.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/10-hinting-slight.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\10-hinting-slight.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/51-local.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\51-local.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/45-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\45-latin.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/49-sansserif.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\49-sansserif.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/40-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\40-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/48-spacing.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\48-spacing.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/60-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\60-latin.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/60-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\60-generic.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/45-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\45-generic.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/69-unifont.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\69-unifont.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/50-user.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\50-user.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/10-scale-bitmap-fonts.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\10-scale-bitmap-fonts.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/90-synthetic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\90-synthetic.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/70-no-bitmaps-except-emoji.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\70-no-bitmaps-except-emoji.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/65-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\65-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/10-sub-pixel-none.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\10-sub-pixel-none.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/30-metric-aliases.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\30-metric-aliases.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/48-guessfamily.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\48-guessfamily.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/11-lcdfilter-default.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\11-lcdfilter-default.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/80-delicious.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\80-delicious.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/20-unhint-small-vera.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\20-unhint-small-vera.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/65-fonts-persian.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\65-fonts-persian.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/10-yes-antialias.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\10-yes-antialias.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/10-hinting-slight.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\10-hinting-slight.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/51-local.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\51-local.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/45-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\45-latin.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/49-sansserif.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\49-sansserif.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/40-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\40-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/48-spacing.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\48-spacing.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/60-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\60-latin.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/60-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\60-generic.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/45-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\45-generic.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/69-unifont.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\69-unifont.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/50-user.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\50-user.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/10-scale-bitmap-fonts.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\10-scale-bitmap-fonts.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/90-synthetic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\90-synthetic.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/70-no-bitmaps-except-emoji.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\70-no-bitmaps-except-emoji.conf': Invalid argument
+tar.exe: Error exit delayed from previous errors.
+[XFAIL] extract fontconfig-android-universal-2.18.3.zip
+[get ] ass-android-universal-0.17.5.zip
+[ok  ] ass-android-universal-0.17.5.zip 24.2MB extracting
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/65-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\65-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/10-sub-pixel-none.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\10-sub-pixel-none.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/30-metric-aliases.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\30-metric-aliases.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/48-guessfamily.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\48-guessfamily.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/11-lcdfilter-default.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\11-lcdfilter-default.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/80-delicious.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\80-delicious.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/20-unhint-small-vera.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\20-unhint-small-vera.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/65-fonts-persian.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\65-fonts-persian.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/10-yes-antialias.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\10-yes-antialias.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/10-hinting-slight.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\10-hinting-slight.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/51-local.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\51-local.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/45-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\45-latin.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/49-sansserif.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\49-sansserif.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/40-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\40-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/48-spacing.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\48-spacing.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/60-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\60-latin.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/60-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\60-generic.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/45-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\45-generic.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/69-unifont.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\69-unifont.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/50-user.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\50-user.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/10-scale-bitmap-fonts.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\10-scale-bitmap-fonts.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/90-synthetic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\90-synthetic.conf': Invalid argument
+fontconfig/fontconfig-x86_64/etc/fonts/conf.d/70-no-bitmaps-except-emoji.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86_64\\etc\\fonts\\conf.d\\70-no-bitmaps-except-emoji.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/65-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\65-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/10-sub-pixel-none.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\10-sub-pixel-none.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/30-metric-aliases.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\30-metric-aliases.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/48-guessfamily.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\48-guessfamily.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/11-lcdfilter-default.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\11-lcdfilter-default.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/80-delicious.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\80-delicious.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/20-unhint-small-vera.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\20-unhint-small-vera.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/65-fonts-persian.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\65-fonts-persian.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/10-yes-antialias.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\10-yes-antialias.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/10-hinting-slight.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\10-hinting-slight.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/51-local.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\51-local.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/45-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\45-latin.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/49-sansserif.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\49-sansserif.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/40-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\40-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/48-spacing.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\48-spacing.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/60-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\60-latin.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/60-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\60-generic.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/45-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\45-generic.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/69-unifont.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\69-unifont.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/50-user.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\50-user.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/10-scale-bitmap-fonts.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\10-scale-bitmap-fonts.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/90-synthetic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\90-synthetic.conf': Invalid argument
+fontconfig/fontconfig-armv7a/etc/fonts/conf.d/70-no-bitmaps-except-emoji.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-armv7a\\etc\\fonts\\conf.d\\70-no-bitmaps-except-emoji.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/65-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\65-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/10-sub-pixel-none.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\10-sub-pixel-none.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/30-metric-aliases.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\30-metric-aliases.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/48-guessfamily.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\48-guessfamily.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/11-lcdfilter-default.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\11-lcdfilter-default.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/80-delicious.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\80-delicious.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/20-unhint-small-vera.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\20-unhint-small-vera.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/65-fonts-persian.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\65-fonts-persian.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/10-yes-antialias.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\10-yes-antialias.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/10-hinting-slight.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\10-hinting-slight.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/51-local.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\51-local.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/45-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\45-latin.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/49-sansserif.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\49-sansserif.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/40-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\40-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/48-spacing.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\48-spacing.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/60-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\60-latin.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/60-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\60-generic.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/45-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\45-generic.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/69-unifont.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\69-unifont.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/50-user.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\50-user.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/10-scale-bitmap-fonts.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\10-scale-bitmap-fonts.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/90-synthetic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\90-synthetic.conf': Invalid argument
+fontconfig/fontconfig-x86/etc/fonts/conf.d/70-no-bitmaps-except-emoji.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-x86\\etc\\fonts\\conf.d\\70-no-bitmaps-except-emoji.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/65-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\65-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/10-sub-pixel-none.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\10-sub-pixel-none.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/30-metric-aliases.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\30-metric-aliases.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/48-guessfamily.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\48-guessfamily.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/11-lcdfilter-default.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\11-lcdfilter-default.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/80-delicious.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\80-delicious.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/20-unhint-small-vera.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\20-unhint-small-vera.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/65-fonts-persian.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\65-fonts-persian.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/10-yes-antialias.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\10-yes-antialias.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/10-hinting-slight.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\10-hinting-slight.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/51-local.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\51-local.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/45-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\45-latin.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/49-sansserif.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\49-sansserif.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/40-nonlatin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\40-nonlatin.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/48-spacing.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\48-spacing.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/60-latin.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\60-latin.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/60-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\60-generic.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/45-generic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\45-generic.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/69-unifont.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\69-unifont.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/50-user.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\50-user.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/10-scale-bitmap-fonts.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\10-scale-bitmap-fonts.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/90-synthetic.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\90-synthetic.conf': Invalid argument
+fontconfig/fontconfig-arm64/etc/fonts/conf.d/70-no-bitmaps-except-emoji.conf: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\fontconfig\\fontconfig-arm64\\etc\\fonts\\conf.d\\70-no-bitmaps-except-emoji.conf': Invalid argument
+unibreak/unibreak-arm64/lib/liblinebreak.a: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\unibreak\\unibreak-arm64\\lib\\liblinebreak.a': Invalid argument
+unibreak/unibreak-x86/lib/liblinebreak.a: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\unibreak\\unibreak-x86\\lib\\liblinebreak.a': Invalid argument
+unibreak/unibreak-armv7a/lib/liblinebreak.a: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\unibreak\\unibreak-armv7a\\lib\\liblinebreak.a': Invalid argument
+unibreak/unibreak-x86_64/lib/liblinebreak.a: Can't create '\\\\?\\D:\\dev\\fsplayer\\FFToolChain\\build\\product\\android\\universal\\unibreak\\unibreak-x86_64\\lib\\liblinebreak.a': Invalid argument
+tar.exe: Error exit delayed from previous errors.
+[XFAIL] extract ass-android-universal-0.17.5.zip
+=== extracted top-level dirs ===
+ass
+bluray
+dav1d
+fontconfig
+freetype
+fribidi
+harfbuzz
+opus
+smb2
+soundtouch
+uavs3d
+unibreak
+xml2
+=== ffmpeg products ===
+=== DONE ===
