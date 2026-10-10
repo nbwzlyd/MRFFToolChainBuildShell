@@ -359,7 +359,11 @@ case "$MR_PLAT" in
     THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --enable-jni"
     THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --enable-mediacodec"
     THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --enable-decoder=h264_mediacodec --enable-hwaccel=h264_mediacodec"
-    THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --enable-decoder=h265_mediacodec --enable-hwaccel=h265_mediacodec"
+    # 注意：FFmpeg 里 HEVC 的 MediaCodec 解码器叫 hevc_mediacodec，没有 h265_mediacodec。
+    # 名字写错时 configure 不报错、静默忽略，结果是编出来的 libavcodec 里压根没有
+    # ff_hevc_mediacodec_decoder，运行时 avcodec_find_decoder_by_name("hevc_mediacodec")
+    # 失败 → H.265 只能软解（日志：android: hevc_mediacodec unavailable, fallback to hevc）。
+    THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --enable-decoder=hevc_mediacodec --enable-hwaccel=hevc_mediacodec"
     # disable iconv
     THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --disable-iconv"
     THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --disable-bzlib"
