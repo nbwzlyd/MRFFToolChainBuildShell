@@ -1,0 +1,179 @@
+From b1b3c484db087a593da83440109f557e7e6482aa Mon Sep 17 00:00:00 2001
+From: derek <derek@local>
+Date: Fri, 30 Oct 2026 00:23:14 +0800
+Subject: [PATCH] hls: keep-alive works through the crypto (AES-128) protocol
+ wrapper
+
+HLS opens AES-128 segments as 'crypto+https://...', so the context held for
+connection reuse is the crypto wrapper, not the http one. Calling
+ff_http_do_new_request2() on it directly always failed and the segment had to
+be reopened. Dispatch through URLProtocol::url_open_new_request instead and
+let crypto forward to its inner context after swapping the nested URL.
+---
+ libavformat/crypto.c | 52 ++++++++++++++++++++++++++++++++++++++++++++
+ libavformat/hls.c    | 23 ++++++++++++++++----
+ libavformat/http.c   |  2 ++
+ libavformat/url.h    | 12 ++++++++++
+ 4 files changed, 85 insertions(+), 4 deletions(-)
+
+diff --git a/libavformat/crypto.c b/libavformat/crypto.c
+index bcfee6a..619ba70 100644
+--- a/libavformat/crypto.c
++++ b/libavformat/crypto.c
+@@ -229,6 +229,57 @@ retry:
+     goto retry;
+ }
+ 
++/*
++ * Keep-alive for the wrapped protocol.
++ *
++ * HLS passes "crypto+https://host/segN.ts" for AES-128 segments. When the
++ * demuxer wants to reuse the connection for the next segment it only has this
++ * wrapper context, so the request must be forwarded to the inner protocol
++ * after swapping the nested URL. The AES state is reset because a new segment
++ * is a new logical stream (fresh IV/position, no leftover padding).
++ */
++static int crypto_open_new_request(URLContext *h, const char *uri, AVDictionary **options)
++{
++    CryptoContext *c = h->priv_data;
++    const char *nested_url;
++    char *new_uri = NULL;
++    int ret;
++
++    if (!c->hd || !c->hd->prot || !c->hd->prot->url_open_new_request)
++        return AVERROR(ENOSYS);
++
++    if (!av_strstart(uri, "crypto+", &nested_url) &&
++        !av_strstart(uri, "crypto:", &nested_url))
++        return AVERROR(EINVAL);
++
++    new_uri = av_strdup(nested_url);
++    if (!new_uri)
++        return AVERROR(ENOMEM);
++
++    ret = c->hd->prot->url_open_new_request(c->hd, new_uri, options);
++    av_free(new_uri);
++    if (ret < 0)
++        return ret;
++
++    /*
++     * New segment: reset the CBC state the same way crypto_seek() does for a
++     * seek back to the first block -- the running IV lives in c->decrypt_iv
++     * and must be restored from the seed IV, and every buffered
++     * ciphertext/plaintext byte must be dropped.
++     */
++    c->outdata     = 0;
++    c->indata      = 0;
++    c->indata_used = 0;
++    c->outptr      = c->outbuffer;
++    c->eof         = 0;
++    c->position    = 0;
++    if (c->iv && c->ivlen && c->decrypt_iv) {
++        memcpy(c->decrypt_iv, c->iv, FFMIN(c->ivlen, c->decrypt_ivlen));
++    }
++
++    return 0;
++}
++
+ static int64_t crypto_seek(URLContext *h, int64_t pos, int whence)
+ {
+     CryptoContext *c = h->priv_data;
+@@ -392,6 +443,7 @@ const URLProtocol ff_crypto_protocol = {
+     .url_read        = crypto_read,
+     .url_write       = crypto_write,
+     .url_close       = crypto_close,
++    .url_open_new_request = crypto_open_new_request,
+     .priv_data_size  = sizeof(CryptoContext),
+     .priv_data_class = &crypto_class,
+     .flags           = URL_PROTOCOL_FLAG_NESTED_SCHEME,
+diff --git a/libavformat/hls.c b/libavformat/hls.c
+index 2f7142f..d32134c 100644
+--- a/libavformat/hls.c
++++ b/libavformat/hls.c
+@@ -645,7 +645,17 @@ static int open_url_keepalive(AVFormatContext *s, AVIOContext **pb,
+     URLContext *uc = ffio_geturlcontext(*pb);
+     av_assert0(uc);
+     (*pb)->eof_reached = 0;
+-    ret = ff_http_do_new_request2(uc, url, options);
++    /*
++     * Dispatch through the protocol rather than calling
++     * ff_http_do_new_request2() directly: AES-128 segments are opened as
++     * "crypto+https://...", so the context we hold here is the crypto
++     * wrapper. It forwards the request to the inner http context (reusing
++     * the TCP/TLS connection) after swapping the nested URL.
++     */
++    if (uc->prot && uc->prot->url_open_new_request)
++        ret = uc->prot->url_open_new_request(uc, url, options);
++    else
++        ret = AVERROR(ENOSYS);
+     if (ret < 0) {
+         ff_format_io_close(s, pb);
+     }
+@@ -1718,7 +1728,7 @@ restart:
+ 
+     seg = next_segment(v);
+     if (c->http_multiple == 1 && !v->input_next_requested &&
+-        seg && seg->key_type == KEY_NONE && av_strstart(seg->url, "http", NULL)) {
++        seg && av_strstart(seg->url, "http", NULL)) {
+         ret = open_input(c, v, seg, &v->input_next);
+         if (ret < 0) {
+             if (ff_check_interrupt(c->interrupt_callback))
+@@ -1750,8 +1760,13 @@ restart:
+ 
+         return ret;
+     }
+-    if (c->http_persistent &&
+-        seg->key_type == KEY_NONE && av_strstart(seg->url, "http", NULL)) {
++    /*
++     * Keep the connection for the next segment. AES-128 segments used to be
++     * excluded here because the crypto wrapper could not issue a new request
++     * on it; url_open_new_request now forwards to the inner http context, so
++     * encrypted playlists get keep-alive as well.
++     */
++    if (c->http_persistent && av_strstart(seg->url, "http", NULL)) {
+         v->input_read_done = 1;
+     } else {
+         ff_format_io_close(v->parent, &v->input);
+diff --git a/libavformat/http.c b/libavformat/http.c
+index 6dcf9eb..96b41cd 100644
+--- a/libavformat/http.c
++++ b/libavformat/http.c
+@@ -2269,6 +2269,7 @@ const URLProtocol ff_http_protocol = {
+     .url_get_file_handle = http_get_file_handle,
+     .url_get_short_seek  = http_get_short_seek,
+     .url_shutdown        = http_shutdown,
++    .url_open_new_request = ff_http_do_new_request2,
+     .priv_data_size      = sizeof(HTTPContext),
+     .priv_data_class     = &http_context_class,
+     .flags               = URL_PROTOCOL_FLAG_NETWORK,
+@@ -2289,6 +2290,7 @@ const URLProtocol ff_https_protocol = {
+     .url_get_file_handle = http_get_file_handle,
+     .url_get_short_seek  = http_get_short_seek,
+     .url_shutdown        = http_shutdown,
++    .url_open_new_request = ff_http_do_new_request2,
+     .priv_data_size      = sizeof(HTTPContext),
+     .priv_data_class     = &https_context_class,
+     .flags               = URL_PROTOCOL_FLAG_NETWORK,
+diff --git a/libavformat/url.h b/libavformat/url.h
+index f7e5bb2..a509f2c 100644
+--- a/libavformat/url.h
++++ b/libavformat/url.h
+@@ -95,6 +95,18 @@ typedef struct URLProtocol {
+     int (*url_delete)(URLContext *h);
+     int (*url_move)(URLContext *h_src, URLContext *h_dst);
+     int (*url_parse_priv)(AVFormatContext *ic, URLContext *h);
++    /**
++     * Issue a new request on an already-open context, reusing its underlying
++     * connection when the protocol supports it (HTTP keep-alive).
++     *
++     * Protocols which merely wrap another protocol (crypto, ...) must forward
++     * this to their inner context instead of failing, so that callers holding
++     * a wrapper context can still amortise the connection setup.
++     *
++     * Return 0 on success, a negative AVERROR if the request could not be
++     * issued. On failure the caller must close and reopen the context.
++     */
++    int (*url_open_new_request)(URLContext *h, const char *uri, AVDictionary **options);
+     const char *default_whitelist;
+ } URLProtocol;
+ 

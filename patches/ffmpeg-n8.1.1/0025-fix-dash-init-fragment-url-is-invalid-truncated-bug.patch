@@ -16,7 +16,7 @@ index 9a2ea78..5927a6e 100644
      char *text;
      char *url = NULL;
 +    
-+    if (strlen(val) >= max_url_size) {
++    if (val && strlen(val) >= max_url_size) {
 +        max_url_size += 256;
 +    }
      char *tmp_str = av_mallocz(max_url_size);

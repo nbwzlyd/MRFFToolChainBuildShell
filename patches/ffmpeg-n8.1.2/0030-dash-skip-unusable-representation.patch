@@ -1,0 +1,234 @@
+From 873c23a470130d1b9e21ce74fd45e2e365ecbfca Mon Sep 17 00:00:00 2001
+From: derek <derek@local>
+Date: Fri, 30 Oct 2026 00:23:14 +0800
+Subject: [PATCH] dash: do not abort the presentation when one representation
+ is unusable
+
+A single representation can be dead while the rest of the manifest is fine
+(for example one Bilibili CDN node answers 403 while the others answer 206).
+dash_read_header() returned the first error, so one broken node made the whole
+film unplayable, and nothing in the log said which URL was at fault.
+
+Mark such a representation as failed and keep going: skip it when sharing the
+init section, when building the program, on I-frame recheck and on seek. Also
+log the exact URL that open_url() could not open.
+
+Note: the strlen(val) NULL crash in get_content_url() is fixed separately in
+patches/ffmpeg-n8.1.2/0025-*.
+---
+ libavformat/dashdec.c | 108 +++++++++++++++++++++++++++++++++---------
+ 1 file changed, 86 insertions(+), 22 deletions(-)
+
+diff --git a/libavformat/dashdec.c b/libavformat/dashdec.c
+index 99c6b0b..5f5e11e 100644
+--- a/libavformat/dashdec.c
++++ b/libavformat/dashdec.c
+@@ -83,6 +83,7 @@ struct representation {
+     AVFormatContext *parent;
+     AVFormatContext *ctx;
+     int stream_index;
++    int failed; /* fsp: representation unusable (e.g. CDN 403), skip it */
+ 
+     char *id;
+     char *lang;
+@@ -482,7 +483,9 @@ static char *get_content_url(xmlNodePtr *baseurl_nodes,
+     char *text;
+     char *url = NULL;
+ 
+-    if (strlen(val) >= max_url_size) {
++    /* fsp: val may be NULL (Representation-BaseURL branch passes NULL);
++     * upstream strlen(NULL) crashed with SIGSEGV in __strlen_aarch64. */
++    if (val && strlen(val) >= max_url_size) {
+         max_url_size += 256;
+     }
+     char *tmp_str = av_mallocz(max_url_size);
+@@ -1753,6 +1756,10 @@ static int open_input(DASHContext *c, struct representation *pls, struct fragmen
+     av_log(pls->parent, AV_LOG_VERBOSE, "DASH request for url '%s', offset %"PRId64"\n",
+            url, seg->url_offset);
+     ret = open_url(pls->parent, &pls->input, url, &c->avio_opts, opts, NULL);
++    if (ret < 0) {
++        /* fsp: surface the exact URL that failed so CDN rejections are diagnosable */
++        av_log(pls->parent, AV_LOG_WARNING, "fsp: open_url failed ret=%d url=[%s]\n", ret, url);
++    }
+ 
+ cleanup:
+     av_free(url);
+@@ -2071,6 +2078,18 @@ static void move_metadata(AVStream *st, const char *key, char **value)
+     }
+ }
+ 
++/* fsp: first usable representation of the group, used as the shared init
++ * section source. Broken representations (failed = CDN error) are skipped. */
++static struct representation *first_usable_rep(struct representation **pls, int n_pls)
++{
++    int i;
++    for (i = 0; i < n_pls; i++) {
++        if (pls[i] && !pls[i]->failed && pls[i]->ctx)
++            return pls[i];
++    }
++    return NULL;
++}
++
+ static int dash_read_header(AVFormatContext *s)
+ {
+     DASHContext *c = s->priv_data;
+@@ -2103,16 +2122,28 @@ static int dash_read_header(AVFormatContext *s)
+     for (i = 0; i < c->n_videos; i++) {
+         rep = c->videos[i];
+         if (i > 0 && c->is_init_section_common_video) {
+-            ret = copy_init_section(rep, c->videos[0]);
+-            if (ret < 0)
+-                return ret;
++            struct representation *src = first_usable_rep(c->videos, c->n_videos);
++            /* fsp: when no rep is usable yet there is no init section to
++             * share, so open this one on its own instead of failing. */
++            if (src)
++                copy_init_section(rep, src);
+         }
+         ret = open_demux_for_component(s, rep);
+ 
+-        if (ret)
+-            return ret;
+-        if (rep->ctx->nb_streams == 0)
+-            return AVERROR_PATCHWELCOME;
++        if (ret < 0 || !rep->ctx || rep->ctx->nb_streams == 0) {
++            /* fsp: a single broken representation (e.g. one CDN node answers
++             * 403) must not abort the whole presentation, otherwise the
++             * complete DASH manifest becomes unplayable. Drop it and go on. */
++            av_log(s, AV_LOG_WARNING,
++                   "fsp: skip unusable video representation id=%s bw=%d (ret=%d)\n",
++                   rep->id ? rep->id : "?", rep->bandwidth, ret);
++            if (rep->ctx)
++                close_demux_for_component(rep);
++            rep->failed = 1;
++            rep->stream_index = -1;
++            rep->assoc_stream = NULL;
++            continue;
++        }
+         rep->stream_index = stream_index;
+         ++stream_index;
+     }
+@@ -2123,16 +2154,25 @@ static int dash_read_header(AVFormatContext *s)
+     for (i = 0; i < c->n_audios; i++) {
+         rep = c->audios[i];
+         if (i > 0 && c->is_init_section_common_audio) {
+-            ret = copy_init_section(rep, c->audios[0]);
+-            if (ret < 0)
+-                return ret;
++            struct representation *src = first_usable_rep(c->audios, c->n_audios);
++            /* fsp: when no rep is usable yet there is no init section to
++             * share, so open this one on its own instead of failing. */
++            if (src)
++                copy_init_section(rep, src);
+         }
+         ret = open_demux_for_component(s, rep);
+ 
+-        if (ret)
+-            return ret;
+-        if (rep->ctx->nb_streams == 0)
+-            return AVERROR_PATCHWELCOME;
++        if (ret < 0 || !rep->ctx || rep->ctx->nb_streams == 0) {
++            av_log(s, AV_LOG_WARNING,
++                   "fsp: skip unusable audio representation id=%s bw=%d (ret=%d)\n",
++                   rep->id ? rep->id : "?", rep->bandwidth, ret);
++            if (rep->ctx)
++                close_demux_for_component(rep);
++            rep->failed = 1;
++            rep->stream_index = -1;
++            rep->assoc_stream = NULL;
++            continue;
++        }
+         rep->stream_index = stream_index;
+         ++stream_index;
+     }
+@@ -2143,16 +2183,25 @@ static int dash_read_header(AVFormatContext *s)
+     for (i = 0; i < c->n_subtitles; i++) {
+         rep = c->subtitles[i];
+         if (i > 0 && c->is_init_section_common_subtitle) {
+-            ret = copy_init_section(rep, c->subtitles[0]);
+-            if (ret < 0)
+-                return ret;
++            struct representation *src = first_usable_rep(c->subtitles, c->n_subtitles);
++            /* fsp: when no rep is usable yet there is no init section to
++             * share, so open this one on its own instead of failing. */
++            if (src)
++                copy_init_section(rep, src);
+         }
+         ret = open_demux_for_component(s, rep);
+ 
+-        if (ret)
+-            return ret;
+-        if (rep->ctx->nb_streams == 0)
+-            return AVERROR_PATCHWELCOME;
++        if (ret < 0 || !rep->ctx || rep->ctx->nb_streams == 0) {
++            av_log(s, AV_LOG_WARNING,
++                   "fsp: skip unusable subtitle representation id=%s bw=%d (ret=%d)\n",
++                   rep->id ? rep->id : "?", rep->bandwidth, ret);
++            if (rep->ctx)
++                close_demux_for_component(rep);
++            rep->failed = 1;
++            rep->stream_index = -1;
++            rep->assoc_stream = NULL;
++            continue;
++        }
+         rep->stream_index = stream_index;
+         ++stream_index;
+     }
+@@ -2167,6 +2216,8 @@ static int dash_read_header(AVFormatContext *s)
+ 
+     for (i = 0; i < c->n_videos; i++) {
+         rep = c->videos[i];
++        if (rep->failed)
++            continue;
+         av_program_add_stream_index(s, 0, rep->stream_index);
+         rep->assoc_stream = s->streams[rep->stream_index];
+         if (rep->bandwidth > 0)
+@@ -2175,6 +2226,8 @@ static int dash_read_header(AVFormatContext *s)
+     }
+     for (i = 0; i < c->n_audios; i++) {
+         rep = c->audios[i];
++        if (rep->failed)
++            continue;
+         av_program_add_stream_index(s, 0, rep->stream_index);
+         rep->assoc_stream = s->streams[rep->stream_index];
+         if (rep->bandwidth > 0)
+@@ -2184,6 +2237,8 @@ static int dash_read_header(AVFormatContext *s)
+     }
+     for (i = 0; i < c->n_subtitles; i++) {
+         rep = c->subtitles[i];
++        if (rep->failed)
++            continue;
+         av_program_add_stream_index(s, 0, rep->stream_index);
+         rep->assoc_stream = s->streams[rep->stream_index];
+         move_metadata(rep->assoc_stream, "id", &rep->id);
+@@ -2201,6 +2256,9 @@ static void recheck_discard_flags(AVFormatContext *s, struct representation **p,
+         struct representation *pls = p[i];
+         int needed = !pls->assoc_stream || pls->assoc_stream->discard < AVDISCARD_ALL;
+ 
++        if (pls->failed)
++            continue;
++
+         if (needed && !pls->ctx) {
+             pls->cur_seg_offset = 0;
+             pls->init_sec_buf_read_offset = 0;
+@@ -2369,14 +2427,20 @@ static int dash_read_seek(AVFormatContext *s, int stream_index, int64_t timestam
+ 
+     /* Seek in discarded streams with dry_run=1 to avoid reopening them */
+     for (i = 0; i < c->n_videos; i++) {
++        if (c->videos[i]->failed)
++            continue;
+         if (!ret)
+             ret = dash_seek(s, c->videos[i], seek_pos_msec, flags, !c->videos[i]->ctx);
+     }
+     for (i = 0; i < c->n_audios; i++) {
++        if (c->audios[i]->failed)
++            continue;
+         if (!ret)
+             ret = dash_seek(s, c->audios[i], seek_pos_msec, flags, !c->audios[i]->ctx);
+     }
+     for (i = 0; i < c->n_subtitles; i++) {
++        if (c->subtitles[i]->failed)
++            continue;
+         if (!ret)
+             ret = dash_seek(s, c->subtitles[i], seek_pos_msec, flags, !c->subtitles[i]->ctx);
+     }
