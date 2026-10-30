@@ -53,6 +53,47 @@ CFG_FLAGS="$CFG_FLAGS --disable-demuxer=image_png_pipe"
 if [ -f "${MR_BUILD_SOURCE}/libavformat/http.c" ]; then
     sed -i.bak 's/if (strcmp(s->uri, s->location))/if (0 \&\& strcmp(s->uri, s->location))/' \
         "${MR_BUILD_SOURCE}/libavformat/http.c" 2>/dev/null || true
+    # 签名 15 分钟过期后 seek 会 403：seek 前先用原始 URL 发一次 0-0 探测，
+    # 拿到新签名（302）再发真实 Range。python 幂等注入，避免重复。
+    python3 - "${MR_BUILD_SOURCE}/libavformat/http.c" <<'PYEOF' || true
+import sys
+p=sys.argv[1]
+s=open(p,encoding='utf-8',errors='replace').read()
+if '[fsp] refresh' not in s:
+    anchor='    /* we save the old context in case the seek fails */'
+    inject='''    /* [fsp] refresh the signed redirect location before the seek.
+       The original uri answers 302 (fresh signature); the signed location
+       answers 206 for any range (far ranges on the original uri may 404). */
+    if (s->uri && s->location && strcmp(s->uri, s->location) && s->seekable) {
+        uint64_t saved_off = s->off;
+        char *saved_loc = av_strdup(s->location);
+        if (saved_loc) {
+            char *orig = av_strdup(s->uri);
+            if (orig) {
+                av_free(s->location);
+                s->location = orig;
+                s->off = 0;
+                s->end_off = 1;
+                if (http_open_cnx(h, &options) >= 0) {
+                    ffurl_closep(&s->hd);
+                    av_freep(&saved_loc);
+                } else {
+                    av_free(s->location);
+                    s->location = saved_loc;
+                    saved_loc = NULL;
+                }
+            }
+            s->off = saved_off;
+            s->end_off = 0;
+            av_freep(&saved_loc);
+        }
+    }
+
+'''
+    if anchor in s:
+        s=s.replace(anchor, inject+anchor, 1)
+        open(p,'w',encoding='utf-8').write(s)
+PYEOF
 fi
 
 # Android 15 with 16 kb page size support
