@@ -1,0 +1,204 @@
+From fsp-mediacodec-color-metadata Mon Sep 17 00:00:00 2001
+From: derek <derek@local>
+Date: Fri, 30 Oct 2026 09:50:00 +0800
+Subject: [PATCH] mediacodec: pass the stream's colour metadata to MediaCodec
+
+FFmpeg's MediaCodec decoders only set mime/width/height/csd on the MediaFormat,
+so the device has no idea that the stream is HDR10 (PQ) / HLG / BT.2020 or
+full-range: it decodes PQ as if it were SDR BT.709 and the picture looks
+noticeably darker and flatter than in media3/Exo, which sets
+MediaFormat.KEY_COLOR_TRANSFER / KEY_COLOR_STANDARD / KEY_COLOR_RANGE /
+KEY_HDR_STATIC_INFO for the same stream.
+
+Map AVCodecContext colour fields (plus the mastering display / content light
+level coded side data the demuxer already parsed, e.g. mov's colr/mdcv/clli) to
+those same four MediaFormat keys, building the 25-byte CTA-861.3 HDR static
+info block the same way media3 does. Nothing about the pixel path changes: the
+codec still renders straight into the Surface, the platform does the HDR
+display or the HDR->SDR tone mapping.
+
+Colour values are only known at configure time when the container carries them
+(configure runs before the first packet), so sources that only signal colour in
+the bitstream VUI simply keep today's behaviour: no key is set.
+
+diff --git a/libavcodec/mediacodecdec.c b/libavcodec/mediacodecdec.c
+index ea9362ba85..96507e15e3 100644
+--- a/libavcodec/mediacodecdec.c
++++ b/libavcodec/mediacodecdec.c
+@@ -31,6 +31,8 @@
+ #include "libavutil/opt.h"
+ #include "libavutil/intreadwrite.h"
+ #include "libavutil/pixfmt.h"
++#include "libavutil/mastering_display_metadata.h"
++#include "libavutil/mathematics.h"
+ #include "libavutil/internal.h"
+ 
+ #include "avcodec.h"
+@@ -305,6 +307,159 @@ static int common_set_extradata(AVCodecContext *avctx, FFAMediaFormat *format)
+ }
+ #endif
+ 
++
++/* ---- FSP: 把色彩元数据透传给 MediaCodec（与 Exo/media3 对齐） ----------------
++ *
++ * FFmpeg 的 mediacodec 解码器原来只设置 mime/宽高/csd，MediaFormat 里一个 color 键
++ * 都没有；平台因此把 HDR10/HLG 片源按 SDR(BT.709) 解释，画面明显偏暗、发灰。
++ * Exo(media3) 通过 MediaFormatUtil.maybeSetColorInfo() 写下面四个键，由平台完成
++ * HDR 显示或 HDR->SDR 映射（Exo 自己不做任何像素处理）。这里补齐同样的信息：
++ *   color-standard / color-transfer / color-range / hdr-static-info
++ * 只做“标注”，不改像素路径；取值与 Android MediaFormat 常量一一对应。
++ *
++ * 注意：configure 发生在 avcodec_open2（首帧之前），色值只能来自容器
++ * （mov 的 colr/mdcv/clli 经 avcodec_parameters_to_context 复制进 avctx）。
++ * 只有码流 VUI、没有容器 colr 的源（部分 TS/HLS）此时可能还是 UNSPECIFIED，
++ * 那种情况下不设置对应键，行为退回原样（不会更差）。
++ */
++static int fsp_mediaformat_color_standard(int primaries)
++{
++    switch (primaries) {
++    case AVCOL_PRI_BT709:      return 1; /* MediaFormat.COLOR_STANDARD_BT709 */
++    case AVCOL_PRI_BT470BG:    return 2; /* COLOR_STANDARD_BT601_PAL */
++    case AVCOL_PRI_SMPTE170M:
++    case AVCOL_PRI_SMPTE240M:  return 4; /* COLOR_STANDARD_BT601_NTSC */
++    case AVCOL_PRI_BT2020:     return 6; /* COLOR_STANDARD_BT2020 */
++    default:                   return 0;
++    }
++}
++
++static int fsp_mediaformat_color_transfer(int trc)
++{
++    switch (trc) {
++    case AVCOL_TRC_LINEAR:       return 1; /* COLOR_TRANSFER_LINEAR */
++    case AVCOL_TRC_BT709:
++    case AVCOL_TRC_SMPTE170M:
++    case AVCOL_TRC_GAMMA22:
++    case AVCOL_TRC_GAMMA28:
++    case AVCOL_TRC_SMPTE240M:    return 3; /* COLOR_TRANSFER_SDR_VIDEO */
++    case AVCOL_TRC_SMPTE2084:    return 6; /* COLOR_TRANSFER_ST2084 (HDR10/PQ) */
++    case AVCOL_TRC_ARIB_STD_B67: return 7; /* COLOR_TRANSFER_HLG */
++    default:                     return 0;
++    }
++}
++
++static int fsp_mediaformat_color_range(int range)
++{
++    if (range == AVCOL_RANGE_JPEG) return 1; /* COLOR_RANGE_FULL */
++    if (range == AVCOL_RANGE_MPEG) return 2; /* COLOR_RANGE_LIMITED */
++    return 0;
++}
++
++static const AVPacketSideData *fsp_find_coded_side_data(AVCodecContext *avctx,
++                                                        enum AVPacketSideDataType type)
++{
++    int i;
++    for (i = 0; i < avctx->nb_coded_side_data; i++) {
++        if (avctx->coded_side_data[i].type == type)
++            return &avctx->coded_side_data[i];
++    }
++    return NULL;
++}
++
++static void fsp_put_be16(uint8_t *p, unsigned v)
++{
++    p[0] = (v >> 8) & 0xff;
++    p[1] = v & 0xff;
++}
++
++/* AVRational -> 16bit 无符号数：value * scale（primaries 用 50000，亮度用 nits 原值） */
++static unsigned fsp_ratio_to_u16(AVRational v, int scale)
++{
++    int64_t uv;
++    if (!v.den)
++        return 0;
++    uv = av_rescale(v.num, scale, v.den);
++    if (uv < 0)     return 0;
++    if (uv > 65535) return 65535;
++    return (unsigned)uv;
++}
++
++/*
++ * MediaFormat.KEY_HDR_STATIC_INFO 的 25 字节布局（CTA-861.3）：
++ *   [0]        保留
++ *   [1..12]    R/G/B 三原色 (x,y) 各 2 字节，大端
++ *   [13..16]   白点 (x,y)
++ *   [17..18]   最大亮度(nits)
++ *   [19..20]   最小亮度(0.0001 nits 归一到 nits，取整)
++ *   [21..22]   MaxCLL
++ *   [23..24]   MaxFALL
++ * 与 media3 的解析一一对应：缺失的字段保持 0（media3 的注释亦如此）。
++ */
++static void fsp_mediacodec_set_hdr_static_info(FFAMediaFormat *format, AVCodecContext *avctx)
++{
++    const AVPacketSideData *sd;
++    AVMasteringDisplayMetadata md;
++    AVContentLightMetadata cll;
++    int have_md = 0, have_cll = 0;
++    uint8_t info[25];
++    memset(info, 0, sizeof(info));
++
++    sd = fsp_find_coded_side_data(avctx, AV_PKT_DATA_MASTERING_DISPLAY_METADATA);
++    if (sd && sd->size >= sizeof(md)) {
++        memcpy(&md, sd->data, sizeof(md));
++        have_md = 1;
++    }
++    sd = fsp_find_coded_side_data(avctx, AV_PKT_DATA_CONTENT_LIGHT_LEVEL);
++    if (sd && sd->size >= sizeof(cll)) {
++        memcpy(&cll, sd->data, sizeof(cll));
++        have_cll = 1;
++    }
++    if (!have_md && !have_cll)
++        return;
++
++    if (have_md && md.has_primaries) {
++        fsp_put_be16(info +  1, fsp_ratio_to_u16(md.display_primaries[0][0], 50000));
++        fsp_put_be16(info +  3, fsp_ratio_to_u16(md.display_primaries[0][1], 50000));
++        fsp_put_be16(info +  5, fsp_ratio_to_u16(md.display_primaries[1][0], 50000));
++        fsp_put_be16(info +  7, fsp_ratio_to_u16(md.display_primaries[1][1], 50000));
++        fsp_put_be16(info +  9, fsp_ratio_to_u16(md.display_primaries[2][0], 50000));
++        fsp_put_be16(info + 11, fsp_ratio_to_u16(md.display_primaries[2][1], 50000));
++        fsp_put_be16(info + 13, fsp_ratio_to_u16(md.white_point[0], 50000));
++        fsp_put_be16(info + 15, fsp_ratio_to_u16(md.white_point[1], 50000));
++    }
++    if (have_md && md.has_luminance) {
++        fsp_put_be16(info + 17, fsp_ratio_to_u16(md.max_luminance, 1));
++        fsp_put_be16(info + 19, fsp_ratio_to_u16(md.min_luminance, 1));
++    }
++    if (have_cll) {
++        fsp_put_be16(info + 21, cll.MaxCLL);
++        fsp_put_be16(info + 23, cll.MaxFALL);
++    }
++
++    ff_AMediaFormat_setBuffer(format, "hdr-static-info", info, sizeof(info));
++}
++
++static void fsp_mediacodec_set_color_info(FFAMediaFormat *format, AVCodecContext *avctx)
++{
++    int standard = fsp_mediaformat_color_standard(avctx->color_primaries);
++    int transfer = fsp_mediaformat_color_transfer(avctx->color_trc);
++    int range    = fsp_mediaformat_color_range(avctx->color_range);
++
++    if (standard)
++        ff_AMediaFormat_setInt32(format, "color-standard", standard);
++    if (transfer)
++        ff_AMediaFormat_setInt32(format, "color-transfer", transfer);
++    if (range)
++        ff_AMediaFormat_setInt32(format, "color-range", range);
++
++    fsp_mediacodec_set_hdr_static_info(format, avctx);
++
++    av_log(avctx, AV_LOG_INFO,
++           "mediacodec color: standard=%d transfer=%d range=%d\n",
++           standard, transfer, range);
++}
++
+ static av_cold int mediacodec_decode_init(AVCodecContext *avctx)
+ {
+     int ret;
+@@ -434,6 +589,7 @@ static av_cold int mediacodec_decode_init(AVCodecContext *avctx)
+     if (avctx->codec_type == AVMEDIA_TYPE_VIDEO) {
+         ff_AMediaFormat_setInt32(format, "width", avctx->width);
+         ff_AMediaFormat_setInt32(format, "height", avctx->height);
++        fsp_mediacodec_set_color_info(format, avctx);
+     } else {
+         ff_AMediaFormat_setInt32(format, "channel-count", avctx->ch_layout.nb_channels);
+         ff_AMediaFormat_setInt32(format, "sample-rate", avctx->sample_rate);

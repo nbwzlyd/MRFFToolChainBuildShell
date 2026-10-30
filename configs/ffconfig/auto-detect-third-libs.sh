@@ -364,6 +364,12 @@ case "$MR_PLAT" in
     # ff_hevc_mediacodec_decoder，运行时 avcodec_find_decoder_by_name("hevc_mediacodec")
     # 失败 → H.265 只能软解（日志：android: hevc_mediacodec unavailable, fallback to hevc）。
     THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --enable-decoder=hevc_mediacodec --enable-hwaccel=hevc_mediacodec"
+    # 2026-10-30：VP8/VP9/AV1 也走 MediaCodec。此前只编了 h264/hevc(+mpeg2/mpeg4)，
+    # vp8/vp9/av1 的 mediacodec 解码器为 0 → 这些源只能软解（4K VP9/AV1 直接卡成幻灯片），
+    # 而 Exo 走系统硬解毫无压力。编上后与 Exo 对齐，代价只是 libavcodec 多几 KB。
+    THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --enable-decoder=vp8_mediacodec --enable-hwaccel=vp8_mediacodec"
+    THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --enable-decoder=vp9_mediacodec --enable-hwaccel=vp9_mediacodec"
+    THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --enable-decoder=av1_mediacodec --enable-hwaccel=av1_mediacodec"
     # disable iconv
     THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --disable-iconv"
     THIRD_CFG_FLAGS="$THIRD_CFG_FLAGS --disable-bzlib"
