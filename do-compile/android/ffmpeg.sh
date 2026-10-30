@@ -46,6 +46,15 @@ CFG_FLAGS="$CFG_FLAGS $THIRD_CFG_FLAGS"
 # 去掉后 TS 探测（扫 188 字节周期的 0x47）自然胜出，行为与 ijk/Exo 一致。
 CFG_FLAGS="$CFG_FLAGS --disable-demuxer=image_png_pipe"
 
+# fsp: seek 时保留 302 的签名地址，不 revert 回原始 URL。
+# 实测原始 URL 对远距离 Range（seek 到 12 分钟读 MKV Cues）返回 404，
+# 而签名 URL 对任意 Range 都是 206；签名 15 分钟过期后 seek 会 403（后续再刷签名）。
+# 用 sed 包一层 if (0 && ...) 而不是删块，避免改错行/括号。
+if [ -f "${MR_BUILD_SOURCE}/libavformat/http.c" ]; then
+    sed -i.bak 's/if (strcmp(s->uri, s->location))/if (0 \&\& strcmp(s->uri, s->location))/' \
+        "${MR_BUILD_SOURCE}/libavformat/http.c" 2>/dev/null || true
+fi
+
 # Android 15 with 16 kb page size support
 # https://developer.android.com/guide/practices/page-sizes#compile-r27
 EXTRA_LDFLAGS="-Wl,-z,max-page-size=16384"
